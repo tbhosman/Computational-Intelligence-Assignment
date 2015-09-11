@@ -30,28 +30,27 @@ for (m=1:len_in)
         y_L1(m,n) = perc(x_in(m,:), w_L1(n,:), thres);
         n = n+1;
     end
-end
 
 %% Generate outputs second layer
-for (m=1:len_in)
     for (n=1:len_L2)
         %x_L2(n,m), where n selects the node of L2, and m selects which ...
         % data input is used
         y_L2(m,n) = perc(y_L1(m,:), w_L2(n,:), thres);
         n = n+1;
     end
-end
 
 %% Generate outputs third layer
-for (m=1:len_in)
     for (n=1:len_L3)
         %x_L2(n,m), where n selects the node of L2, and m selects which ...
         % data input is used.
         % stap(x,y) returns 1 if x>y and 0 when x<y (to ensure binary
         % output.
-        y_L3(m,n) = stap(perc(y_L2(m,:), w_L3(n,:), thres), 0.5);
+        y_L3(m,n) = perc(y_L2(m,:), w_L3(n,:), thres);
+        y_L3_bin(m,n) = stap(y_L3(m,n),0.5);
         n = n+1;
     end
+    
+%% Calculate new weights
+        
 end
 
-%% Calculate new weights
