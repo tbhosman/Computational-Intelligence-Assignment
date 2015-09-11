@@ -2,15 +2,14 @@ clear all;
 close all;
 
 %% Tweakables
-thres = 1;
+thres = 2;
 len_L1 = 8;
 len_L2 = 6;
 len_L3 = 3;
 
 %% Fetch input matrix and desired output
-x_in = [0.57855,0.82114,1.2148,0.72998,0.34868,0.99462,-0.018461,0.92471,0.24418,0.063001;-0.022322,0.47681,0.55624,0.91543,0.26883,0.14517,0.44995,1.0584,0.68453,0.99877;0.057631,0.0017896,0.95442,1.05,0.11558,0.17376,-0.1538,0.20707,0.40055,0.2335];
-%x_in = 
-%y_out_desired = 
+x_in = dlmread('features.txt');
+y_out_desired = de2bi(dlmread('targets.txt'));
 
 % Calculate amount of data (len_in) and amount of inputs (width_in)
 [len_in,width_in] = size(x_in);
@@ -47,8 +46,12 @@ end
 for (m=1:len_in)
     for (n=1:len_L3)
         %x_L2(n,m), where n selects the node of L2, and m selects which ...
-        % data input is used
-        y_L3(m,n) = perc(y_L2(m,:), w_L3(n,:), thres);
+        % data input is used.
+        % stap(x,y) returns 1 if x>y and 0 when x<y (to ensure binary
+        % output.
+        y_L3(m,n) = stap(perc(y_L2(m,:), w_L3(n,:), thres), 0.5);
         n = n+1;
     end
 end
+
+%% Calculate new weights

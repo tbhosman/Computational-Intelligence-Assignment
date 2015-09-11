@@ -19,7 +19,7 @@ for n = 1:Lx
     n=n+1;
 end
 
-out = sigmf(sum,[1,0]);
+out = sigmf(sum,[1,thres]);
 
 return;
 end
