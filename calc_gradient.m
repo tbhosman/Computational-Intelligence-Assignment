@@ -1,6 +1,6 @@
-function gradient = calc_gradient( error , output )
-%UNTITLED6 Summary of this function goes here
-%   Detailed explanation goes here
+function gradient = calc_gradient(  output, error )
+% CalcGradient berekend de gradient
+%   output is de output van de output layer (NIET BINAIR)
     gradient = output .* (1-output) .* error;
 
 end

@@ -1,6 +1,7 @@
 function error = calc_error( y_desired, y_actual)
-%UNTITLED3 Summary of this function goes here
-%   Detailed explanation goes here
+% CalcError berekend de error
+%   y_desired is de gewenste output binair
+%   y_actual is de gekregen output binair   
     error = y_desired - y_actual;
 
 end
