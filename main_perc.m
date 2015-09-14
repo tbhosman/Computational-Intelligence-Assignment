@@ -2,10 +2,11 @@ clear all;
 close all;
 
 %% Tweakables
-thres = 2;
-len_L1 = 8;
-len_L2 = 6;
-len_L3 = 3;
+thres = 2;      % Threshold
+alpha = 0.1;    % Learning rate
+len_L1 = 8;     % Number of nodes in layer 1
+len_L2 = 6;     % Number of nodes in layer 2
+len_L3 = 3;     % Number of nodes in layer 3
 
 %% Fetch input matrix and desired output
 x_in = dlmread('features.txt');
@@ -22,8 +23,8 @@ w_L1 = randi(1000, len_L1, width_in)./1000;
 w_L2 = randi(1000, len_L2, len_L1)./1000;
 w_L3 = randi(1000, len_L3, len_L2)./1000;
 
-%% Generate outputs first layer
 for (m=1:len_in)
+%% Generate outputs first layer
     for (n=1:len_L1)
         %x_L1(n,m), where n selects the node of L1, and m selects which ...
         % data input is used (1-7854)
@@ -51,7 +52,7 @@ for (m=1:len_in)
     end
     
 %% Calculate new weights
-w_L3 = give_deltaw(y_out_desired(m,:),y_L3_bin(m,:),y_L3(m,:),y_L3(m,:),0.1);
+%w_L3 = give_deltaw(y_out_desired(m,:),y_L3_bin(m,:),y_L3(m,:),y_L3(m,:),alpha);
         
 end
 
