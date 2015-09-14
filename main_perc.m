@@ -52,7 +52,7 @@ for (m=1:len_in)
     end
     
 %% Calculate new weights
-%w_L3 = give_deltaw(y_out_desired(m,:),y_L3_bin(m,:),y_L3(m,:),y_L3(m,:),alpha);
+w_L3 = give_deltaw(y_out_desired(m,:),y_L3_bin(m,:),y_L3(m,:),y_L2(m,:),alpha);
         
 end
 
