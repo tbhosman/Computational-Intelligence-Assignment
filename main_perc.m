@@ -52,7 +52,12 @@ for (m=1:len_in)
     end
     
 %% Calculate new weights
-w_L3 = w_L3 + give_deltaw(y_out_desired(m,:),y_L3_bin(m,:),y_L3(m,:),y_L2(m,:),alpha);
-        
+[dw_L3,gradient_L3] = give_deltaw(y_out_desired(m,:),y_L3_bin(m,:),y_L3(m,:),y_L2(m,:),alpha);
+w_L3 = w_L3 + dw_L3;
+[dw_L2,gradient_L2] = give_deltaw_hidden(y_L2(m,:),gradient_L3,w_L3,y_L1(m,:),alpha);
+w_L2 = w_L2 + dw_L2;
+[dw_L1,gradient_L1] = give_deltaw_hidden(y_L1(m,:),gradient_L2,w_L2,x_in(m,:),alpha);
+w_L1 = w_L1 + dw_L1;
+
 end
 
