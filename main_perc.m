@@ -13,7 +13,8 @@ mse_sum = 0;
 
 %% Fetch input matrix and desired output
 x_in = dlmread('features.txt');
-y_out_desired = de2bi(dlmread('targets.txt'));
+y_out_desired_cat = dlmread('targets.txt');
+y_out_desired = de2bi(y_out_desired_cat);
 
 % Calculate amount of data (len_in) and amount of inputs (width_in)
 [len_in,width_in] = size(x_in);
@@ -25,6 +26,12 @@ y_out_desired = de2bi(dlmread('targets.txt'));
 w_L1 = randi(1000, len_L1, width_in)./1000;
 w_L2 = randi(1000, len_L2, len_L1)./1000;
 w_L3 = randi(1000, len_L3, len_L2)./1000;
+
+%% Initialize outputs
+y_L1 = zeros(len_in,len_L1);
+y_L2 = zeros(len_in,len_L2);
+y_L3 = zeros(len_in,len_L3);
+y_L3_bin = zeros(len_in,len_L3);
 
 for (x=1:epoch)
 for (m=1:len_in)
@@ -69,4 +76,6 @@ end
 mse(x) = mse_sum/len_in;
 mse_sum = 0;
 end
+
+%y_L3_cat = bi2dec(num2str(y_L3_bin));
 
