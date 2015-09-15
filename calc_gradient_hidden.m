@@ -8,7 +8,7 @@ function gradient = calc_gradient_hidden(w_Lnext,gradient_Lnext,output_Lcurr);
     grad_len = length(gradient_Lnext);
     out_len = length(output_Lcurr);
     
-    if ((w_x == out_len) && (w_y == grad_len))
+    if ((w_x == out_len) && (w_y == grad_len)) %check for right dimensions
         w_mult = w_Lnext' * gradient_Lnext';
         gradient = output_Lcurr .* (1-output_Lcurr) .* w_mult';
     else
