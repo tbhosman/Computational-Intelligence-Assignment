@@ -2,9 +2,9 @@ clear all;
 close all;
 
 %% Tweakables
-epoch = 3;     % Number of epochs
+epoch = 5;     % Number of epochs
 thres = 1;      % Threshold
-alpha = 0.1;    % Learning rate
+alpha = 0.3;    % Learning rate
 len_L1 = 8;     % Number of nodes in layer 1
 len_L2 = 6;     % Number of nodes in layer 2
 len_L3 = 3;     % Number of nodes in layer 3
@@ -67,5 +67,6 @@ w_L1 = w_L1 + dw_L1;
 mse_sum = (mse_sum + sum(error_L3.^2));
 end
 mse(x) = mse_sum/len_in;
+mse_sum = 0;
 end
 
