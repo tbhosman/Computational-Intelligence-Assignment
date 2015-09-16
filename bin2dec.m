@@ -1,4 +1,6 @@
-function y_L3_dec = bin2dec(y_L3_bin,len_in)
+function y_L3_dec = bin2dec(y_L3_bin)
+
+len_in = length(y_L3_bin);
 
 y_L3_dec = zeros(len_in,1);
 for z=1:len_in
