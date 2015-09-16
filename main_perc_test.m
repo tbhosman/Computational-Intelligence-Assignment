@@ -2,8 +2,8 @@ clear all;
 close all;
 
 %% Tweakables
-epoch = 100;         % Number of epochs
-thres = 2;          % Threshold
+epoch = 10;         % Number of epochs
+thres = 1;          % Threshold
 alpha = 0.05;       % Learning rate
 beta = 0.9;         % Momentum constant
 alpha_inc = 1.1;    % alpha increase rate
@@ -12,7 +12,9 @@ alpha_max = 0.95;   % max alpha value
 len_L1 = 8;         % Number of nodes in layer 1
 len_L2 = 6;         % Number of nodes in layer 2
 len_L3 = 7;         % Number of nodes in layer 3
-K = 8;              % cross validation constant (DO NOT CHANGE)
+K = 8;              % Cross validation constant (DO NOT CHANGE)
+err_change = 0.001; % Difference between error_rate of current and ... 
+                    % previous epoch at which script is discontinued
 
 %% Initializing some constants
 mse = zeros(1,epoch);
@@ -47,9 +49,11 @@ y_L2 = zeros(len_in,len_L2);
 y_L3 = zeros(len_in,len_L3);
 y_L3_bin = zeros(len_in,len_L3);
 
+%% Loop over epochs
 for (x=1:epoch)
+%% Loop over data samples
 for (m=1:len_in)
-%% Generate outputs first layer
+    %% Generate outputs first layer
     for (n=1:len_L1)
         %x_L1(n,m), where n selects the node of L1, and m selects which ...
         % data input is used (1-7854)
@@ -57,7 +61,7 @@ for (m=1:len_in)
         n = n+1;
     end
 
-%% Generate outputs second layer
+    %% Generate outputs second layer
     for (n=1:len_L2)
         %x_L2(n,m), where n selects the node of L2, and m selects which ...
         % data input is used
@@ -100,6 +104,13 @@ mse_sum = 0;
 y_L3_cat = vec2ind(y_L3_bin')';
 error_rate(x) = sum(y_L3_cat ~= y_out_desired_cat)/len_in*100;
 
+%% When error hardly changes
+if (x>1)
+    if (abs(error_rate(x-1)-error_rate(x))<err_change)
+        break;
+    end
+end        
+
 %% Calculate adaptive learning rate
 alpha_hist(x) = alpha;
 if (x>1)                            %if not first epoch
@@ -111,4 +122,5 @@ if (x>1)                            %if not first epoch
         alpha = alpha_dec * alpha;
     end
 end
+
 end
