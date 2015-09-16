@@ -2,14 +2,23 @@ clear all;
 close all;
 
 %% Tweakables
-epoch = 30;     % Number of epochs
-thres = 2;      % Threshold
-alpha = 0.1;    % Learning rate
-len_L1 = 8;     % Number of nodes in layer 1
-len_L2 = 6;     % Number of nodes in layer 2
-len_L3 = 3;     % Number of nodes in layer 3
+epoch = 100;         % Number of epochs
+thres = 2;          % Threshold
+alpha = 0.05;       % Learning rate
+beta = 0.9;         % Momentum constant
+alpha_inc = 1.1;    % alpha increase rate
+alpha_dec = 0.5;    % alpha decrease rate
+alpha_max = 0.95;   % max alpha value
+len_L1 = 8;         % Number of nodes in layer 1
+len_L2 = 6;         % Number of nodes in layer 2
+len_L3 = 3;         % Number of nodes in layer 3
+
+%% Initializing some constants
 mse = zeros(1,epoch);
 mse_sum = 0;
+dw_L3 = 0;
+dw_L2 = 0;
+dw_L1 = 0;
 
 %% Fetch input matrix and desired output
 x_in = dlmread('features.txt');
@@ -63,9 +72,15 @@ for (m=1:len_in)
     end
     
 %% Calculate new weights
+dw_L3_prev = dw_L3;
+dw_L2_prev = dw_L2;
+dw_L1_prev = dw_L1;
 [dw_L3,gradient_L3,error_L3] = give_deltaw(y_out_desired(m,:),y_L3(m,:),y_L3(m,:),y_L2(m,:),alpha);
 [dw_L2,gradient_L2] = give_deltaw_hidden(y_L2(m,:),gradient_L3,w_L3,y_L1(m,:),alpha);
 [dw_L1,gradient_L1] = give_deltaw_hidden(y_L1(m,:),gradient_L2,w_L2,x_in(m,:),alpha);
+dw_L3 = beta * dw_L3_prev + dw_L3;
+dw_L2 = beta * dw_L2_prev + dw_L2;
+dw_L1 = beta * dw_L1_prev + dw_L1;
 w_L3 = w_L3 + dw_L3;
 w_L2 = w_L2 + dw_L2;
 w_L1 = w_L1 + dw_L1;
@@ -75,6 +90,18 @@ mse_sum = (mse_sum + sum(error_L3.^2));
 end
 mse(x) = mse_sum/len_in;
 mse_sum = 0;
+
+%% Calculate adaptive learning rate
+if (x>1)                            %if not first epoch
+    if (alpha>alpha_max)
+        alpha = alpha_max;
+    elseif ((mse(x-1)-mse(x))>0)    %error decreasing
+        alpha = alpha_inc * alpha;
+    else                            %error increasing
+        alpha = alpha_dec * alpha;
+    end
+end
+
 end
 
 %y_L3_cat = bi2dec(num2str(y_L3_bin));
