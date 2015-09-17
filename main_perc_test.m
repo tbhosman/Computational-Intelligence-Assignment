@@ -2,7 +2,7 @@ clear all;
 close all;
 
 %% Tweakables
-epoch = 10;         % Number of epochs
+epoch = 30;         % Number of epochs
 thres = 1;          % Threshold
 alpha = 0.05;       % Learning rate
 beta = 0.9;         % Momentum constant
