@@ -1,4 +1,4 @@
-clearvars -except w_L1 w_L2 w_L3 thres len_L0 len_L1 len_L2 len_L3;
+clearvars -except w_L0 w_L1 w_L2 w_L3 thres len_L0 len_L1 len_L2 len_L3;
 close all;
 
 %% Fetch input matrix and desired output
