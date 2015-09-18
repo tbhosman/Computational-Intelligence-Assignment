@@ -1,3 +1,6 @@
+%% Main script for generating output in a trained network, designed ...
+%% for 2 hidden layers.
+
 clearvars -except w_L1 w_L2 w_L3 thres len_L1 len_L2 len_L3;
 close all;
 
