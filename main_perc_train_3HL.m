@@ -129,7 +129,7 @@ y_L3_cat = vec2ind(y_L3_bin')';
 error_rate(x) = sum(y_L3_cat ~= y_out_desired_cat)/len_in*100;
 
 %% When error hardly changes
-if (x>1)
+if (x>10)
     if (abs(error_rate(x-1)-error_rate(x))<err_change)
         break;
     end
