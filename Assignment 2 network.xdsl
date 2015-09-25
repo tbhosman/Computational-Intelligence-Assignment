@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<smile version="1.0" id="Network1" numsamples="1000" discsamples="10000">
+	<nodes>
+		<cpt id="Healthy">
+			<state id="True" />
+			<state id="False" />
+			<probabilities>0.3 0.7</probabilities>
+		</cpt>
+		<cpt id="Children">
+			<state id="True" />
+			<state id="False" />
+			<probabilities>0.15 0.85</probabilities>
+		</cpt>
+		<cpt id="Vegetarian">
+			<state id="True" />
+			<state id="False" />
+			<probabilities>0.04 0.96</probabilities>
+		</cpt>
+		<cpt id="Female">
+			<state id="True" />
+			<state id="False" />
+			<probabilities>0.46 0.54</probabilities>
+		</cpt>
+		<cpt id="Married">
+			<state id="True" />
+			<state id="False" />
+			<probabilities>0.84 0.16</probabilities>
+		</cpt>
+		<cpt id="Node8">
+			<state id="True" />
+			<state id="False" />
+			<parents>Healthy Married</parents>
+			<probabilities>0.14 0.86 0.43 0.57 0.5600000000000001 0.44 0.9 0.1</probabilities>
+		</cpt>
+		<cpt id="Node9">
+			<state id="True" />
+			<state id="False" />
+			<parents>Married</parents>
+			<probabilities>0.34 0.66 0.64 0.36</probabilities>
+		</cpt>
+		<cpt id="Node10">
+			<state id="True" />
+			<state id="False" />
+			<parents>Healthy Children Vegetarian</parents>
+			<probabilities>0.88 0.12 0.78 0.22 0.96 0.04 0.72 0.28 0.64 0.36 0.28 0.72 0.46 0.54 0.09 0.91</probabilities>
+		</cpt>
+		<cpt id="Node11">
+			<state id="True" />
+			<state id="False" />
+			<parents>Children Female</parents>
+			<probabilities>0.86 0.14 0.64 0.36 0.6800000000000001 0.32 0.32 0.6800000000000001</probabilities>
+		</cpt>
+		<cpt id="Node12">
+			<state id="True" />
+			<state id="False" />
+			<parents>Healthy Vegetarian</parents>
+			<probabilities>0.97 0.03 0.89 0.11 0.77 0.23 0.32 0.6800000000000001</probabilities>
+		</cpt>
+		<cpt id="Node13">
+			<state id="True" />
+			<state id="False" />
+			<parents>Children Married</parents>
+			<probabilities>0.74 0.26 0.8100000000000001 0.19 0.07000000000000001 0.9300000000000001 0.45 0.55</probabilities>
+		</cpt>
+		<cpt id="Node14">
+			<state id="True" />
+			<state id="False" />
+			<parents>Female</parents>
+			<probabilities>0.8100000000000001 0.19 0.33 0.67</probabilities>
+		</cpt>
+	</nodes>
+	<extensions>
+		<genie version="1.0" app="GeNIe 2.0.5590.0" name="Network1" faultnameformat="nodestate">
+			<node id="Healthy">
+				<name>Healthy</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>220 164 344 222</position>
+				<barchart active="true" width="128" height="64" />
+			</node>
+			<node id="Children">
+				<name>Children</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>419 174 473 207</position>
+				<barchart active="true" width="128" height="64" />
+			</node>
+			<node id="Vegetarian">
+				<name>Vegetarian</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>592 179 640 209</position>
+				<barchart active="true" width="128" height="54" />
+			</node>
+			<node id="Female">
+				<name>Female</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>760 175 811 206</position>
+				<barchart active="true" width="128" height="64" />
+			</node>
+			<node id="Married">
+				<name>Married</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>931 180 979 210</position>
+				<barchart active="true" width="128" height="54" />
+			</node>
+			<node id="Node8">
+				<name>1</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>88 403 122 424</position>
+				<barchart active="true" width="128" height="64" />
+			</node>
+			<node id="Node9">
+				<name>2</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>261 403 295 424</position>
+				<barchart active="true" width="128" height="64" />
+			</node>
+			<node id="Node10">
+				<name>3</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>419 392 471 424</position>
+				<barchart active="true" width="128" height="54" />
+			</node>
+			<node id="Node11">
+				<name>4</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>598 403 632 424</position>
+				<barchart active="true" width="128" height="64" />
+			</node>
+			<node id="Node12">
+				<name>5</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>758 392 810 424</position>
+				<barchart active="true" width="128" height="54" />
+			</node>
+			<node id="Node13">
+				<name>6</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>938 403 972 424</position>
+				<barchart active="true" width="128" height="64" />
+			</node>
+			<node id="Node14">
+				<name>7</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>1107 402 1141 423</position>
+				<barchart active="true" width="128" height="64" />
+			</node>
+		</genie>
+	</extensions>
+</smile>
