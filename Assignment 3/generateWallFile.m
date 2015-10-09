@@ -8,7 +8,7 @@ Directions = zeros(maze_size(1), maze_size(2), 4);
 
 for x = 1:maze_size(2)
     for y = 1:maze_size(1)
-        if ((1<x) && (x<maze_size(2)) && (1<y) && (y<maze_size(1))) 
+        if ((1<x) && (x<maze_size(2)) && (1<y) && (y<maze_size(1)))
 %for all non-edge maze parts
             %check if space north of antspos is '1'
             if (maze(y-1,x) == 1)
@@ -129,6 +129,12 @@ for x = 1:maze_size(2)
                  Directions(y,x,4) = 1;
              end
         end
-    end
+        
+        %calculate chance to use this direction
+        if (sum(Directions(y,x,:) ~= 0))
+            Directions(y,x,:) = Directions(y,x,:)./sum(Directions(y,x,:));
+        end
+        
+     end
 end
 end
