@@ -24,8 +24,13 @@ ants_pos = repmat(start_ant,ants,1);
 %% Initialize matrix with possible directions
 Directions_matrix = generateWallFile(maze);
 
+%% Initialize ant history
+ants_hist = zeros(iterations, ants, 2);
+ants_hist(1,:,:) = ants_pos;
+
 %% Calculate new locations for ants
 for i = 1:iterations
-    ants_pos = calcNextLoc(Directions_matrix, ants_pos);
+    ants_pos = calcNextLoc(Directions_matrix, ants_pos, ants_hist(1:(i-1),:,:));
+    ants_hist(i+1,:,:) = ants_pos;
 end
     
