@@ -1,6 +1,12 @@
 function Directions = generateWallFile(maze)
-%GENERATEWALLFILE Summary of this function goes here
-%   Detailed explanation goes here
+%Generates a matrix which contains possible directions of a location
+%in the maze.
+%   The output matrix 'Directions' has 3 dimensions. The first dimension 
+%   is the y position in the maze, the second is the x position in the
+%   maze, the third dimension has a size 4, where each element contains
+%   the chance of going in that direction. The first position in this
+%   dimension is north, the second is east, the third is south, the fourth
+%   is west.
 
 maze_size = size(maze);
 

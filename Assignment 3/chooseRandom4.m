@@ -1,6 +1,6 @@
 function option = chooseRandom4(chance1, chance2, chance3, chance4)
-%CHOOSERANDOM4 Summary of this function goes here
-%   Detailed explanation goes here
+%Randomly chooses between four options based on their weights
+
 
 random_number = rand(1);
 

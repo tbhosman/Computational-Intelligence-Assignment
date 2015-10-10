@@ -1,6 +1,5 @@
 function walkvect = walkVector(dir)
-%WALKVECTOR Summary of this function goes here
-%   Detailed explanation goes here
+%Generates a vector based on a direction index
 
 if (dir == 1) %north
     walkvect = [0 -1];

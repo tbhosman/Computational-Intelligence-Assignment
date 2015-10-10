@@ -1,6 +1,5 @@
 function option = chooseRandom2(chance1, chance2)
-%CHOOSERANDOM2 Summary of this function goes here
-%   Detailed explanation goes here
+%Randomly chooses between two options based on their weights
 
 random_number = rand(1);
 

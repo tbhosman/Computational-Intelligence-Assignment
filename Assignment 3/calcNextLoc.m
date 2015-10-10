@@ -1,18 +1,28 @@
 function ants_pos = calcNextLoc(Directions_matrix, ants_pos, ants_hist)
-%CALCNEXTLOC Summary of this function goes here
-%   Detailed explanation goes here
+%Calculates a new position for all ants
+%   Takes into account chances of taking that direction, which will
+%   increase if pheromone is dropped on this segment. 
+%   Also checks the history of the ant. If the ant can choose
+%   between both new and old locations it will always choose a new one. 
+%   If there is more than one new place it will choose randomly based on
+%   the chances of taking that direction. Chances are normalized when a 
+%   direction is omitted.
 
-for a = 1:length(ants_pos) 
+for a = 1:length(ants_pos)
+    
+    %for correct working of the squeeze function:
     if (size(ants_hist,1)==1) %only one history location
         ant_hist = squeeze(ants_hist(:,a,:))';
     else
         ant_hist = squeeze(ants_hist(:,a,:));
     end
-    random_number = rand(1);
+    
     %number of directions:
     directions = sum(Directions_matrix(ants_pos(a,2)+1,ants_pos(a,1)+1,:) ~= 0);
+    
     %vector with possible directions
     dir = find(Directions_matrix(ants_pos(a,2)+1,ants_pos(a,1)+1,:));
+    
     %chances to pick a direction:
     chance = [Directions_matrix(ants_pos(a,2)+1,ants_pos(a,1)+1,1) ...
         Directions_matrix(ants_pos(a,2)+1,ants_pos(a,1)+1,2) ...
@@ -218,6 +228,6 @@ for a = 1:length(ants_pos)
                 chance(dir(3))/(chance(dir(1))+chance(dir(2))+chance(dir(3)))),:);
                 %chances are normalized to ensure total chance of 1
         end
+    end
 end
 end
-

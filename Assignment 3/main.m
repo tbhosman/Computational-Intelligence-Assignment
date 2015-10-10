@@ -1,9 +1,10 @@
+%%%% Main loop for Ant Colony Optimalization (ACO)
 clear all;
 close all;
 
 %% Tweakables
 ants = 20; %number of simulated ants
-iterations = 100; %number of iterations
+iterations = 1; %number of iterations
 max_steps = 1000; %maximum number of steps an ant can make before aborting
 pheromones = 1; %amount of pheromones dropped
 eveporation = 0.1; %evaporation constant
@@ -33,7 +34,7 @@ ants_hist(1,:,:) = ants_pos;
 for i = 1:iterations
     for s = 1:max_steps
         ants_pos = calcNextLoc(Directions_matrix, ants_pos, ants_hist(1:(i-1),:,:));
-        ants_hist(i+1,:,:) = ants_pos;
+        ants_hist(s+1,:,:) = ants_pos;
         if (ismember(end_ant, ants_pos, 'rows'))
            %add pheromone and change chances of directions
            break; %go to next iteration
