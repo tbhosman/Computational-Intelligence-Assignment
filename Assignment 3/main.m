@@ -5,15 +5,15 @@ close all;
 %% Tweakables
 ants = 20; %number of simulated ants
 iterations = 100; %number of iterations
-max_steps = 1000; %maximum number of steps an ant can make before aborting
+max_steps = 10000; %maximum number of steps an ant can make before aborting
 pheromones = 100; %amount of pheromones dropped
 evaporation = 0.1; %evaporation constant
 
 %% Load files
-maze = dlmread('easy maze.txt');
+maze = dlmread('medium maze.txt');
 %coordinates are in [x,y] position
-start_ant = dlmread('easy coordinates.txt',',', [0 0 0 1]); 
-end_ant = dlmread('easy coordinates.txt',',', [1 0 1 1]);
+start_ant = dlmread('medium coordinates.txt',',', [0 0 0 1]); 
+end_ant = dlmread('medium coordinates.txt',',', [1 0 1 1]);
 
 sizeX = maze(1,1); %get number of columns
 sizeY = maze(1,2); %get number of rows
@@ -26,7 +26,7 @@ Chances_matrix = calcChances(Pheromones_matrix);
 
 %% Calculate new locations for ants
 for i = 1:iterations
-    
+    i
     %Initialize positions and histories
     ants_pos = repmat(start_ant,ants,1);
     ants_hist = zeros(max_steps, ants, 2);
@@ -41,6 +41,7 @@ for i = 1:iterations
             %retrieve data of ant that found a route
             [~,ant_reached] = ismember(end_ant, ants_pos, 'rows');
             ant_reached_hist = squeeze(ants_hist(1:(s+1),ant_reached,:));
+            s
             break; %go to next iteration
         end   
     end
