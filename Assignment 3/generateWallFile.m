@@ -4,7 +4,7 @@ function Directions = generateWallFile(maze)
 %   The output matrix 'Directions' has 3 dimensions. The first dimension 
 %   is the y position in the maze, the second is the x position in the
 %   maze, the third dimension has a size 4, where each element contains
-%   the chance of going in that direction. The first position in this
+%   the amount of pheromone into that direction. The first position in this
 %   dimension is north, the second is east, the third is south, the fourth
 %   is west.
 
@@ -137,9 +137,9 @@ for x = 1:maze_size(2)
         end
         
         %calculate chance to use this direction
-        if (sum(Directions(y,x,:) ~= 0))
-            Directions(y,x,:) = Directions(y,x,:)./sum(Directions(y,x,:));
-        end
+        %if (sum(Directions(y,x,:) ~= 0))
+        %    Directions(y,x,:) = Directions(y,x,:)./sum(Directions(y,x,:));
+        %end
         
      end
 end

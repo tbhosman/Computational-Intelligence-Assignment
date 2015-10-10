@@ -20,7 +20,7 @@ for a = 1:length(ants_pos)
     %number of directions:
     directions = sum(Directions_matrix(ants_pos(a,2)+1,ants_pos(a,1)+1,:) ~= 0);
     
-    %vector with possible directions
+    %vector with possible directions:
     dir = find(Directions_matrix(ants_pos(a,2)+1,ants_pos(a,1)+1,:));
     
     %chances to pick a direction:
@@ -74,10 +74,20 @@ for a = 1:length(ants_pos)
         option(1,:) = ants_pos(a,:) + walkVector(dir(1));
         option(2,:) = ants_pos(a,:) + walkVector(dir(2));
         option(3,:) = ants_pos(a,:) + walkVector(dir(3));
-        a_in_hist = ismember(option(1,:), ant_hist, 'rows'); %true if option_a is part of the history
-        b_in_hist = ismember(option(2,:), ant_hist, 'rows'); %true if option_b is part of the history
-        c_in_hist = ismember(option(3,:), ant_hist, 'rows'); %true if option_c is part of the history
         
+        if (isempty(ant_hist))
+            a_in_hist = 0;
+            b_in_hist = 0;
+            c_in_hist = 0;
+        else
+            %true if option_a is part of the history
+            a_in_hist = ismember(option(1,:), ant_hist, 'rows');
+            %true if option_b is part of the history
+            b_in_hist = ismember(option(2,:), ant_hist, 'rows');
+            %true if option_c is part of the history
+            c_in_hist = ismember(option(3,:), ant_hist, 'rows'); 
+        end
+            
         if ((a_in_hist && b_in_hist && c_in_hist) || ...
                 (~a_in_hist && ~b_in_hist && ~c_in_hist))
             
@@ -126,10 +136,22 @@ for a = 1:length(ants_pos)
         option(2,:) = ants_pos(a,:) + walkVector(dir(2));
         option(3,:) = ants_pos(a,:) + walkVector(dir(3));
         option(4,:) = ants_pos(a,:) + walkVector(dir(4));
-        a_in_hist = ismember(option(1,:), ant_hist, 'rows'); %true if option_a is part of the history
-        b_in_hist = ismember(option(2,:), ant_hist, 'rows'); %true if option_b is part of the history
-        c_in_hist = ismember(option(3,:), ant_hist, 'rows'); %true if option_c is part of the history
-        d_in_hist = ismember(option(4,:), ant_hist, 'rows'); %true if option_d is part of the history
+        
+        if (isempty(ant_hist))
+            a_in_hist = 0;
+            b_in_hist = 0;
+            c_in_hist = 0;
+            d_in_hist = 0;
+        else
+            %true if option_a is part of the history
+            a_in_hist = ismember(option(1,:), ant_hist, 'rows');
+            %true if option_b is part of the history
+            b_in_hist = ismember(option(2,:), ant_hist, 'rows');
+            %true if option_c is part of the history
+            c_in_hist = ismember(option(3,:), ant_hist, 'rows');
+            %true if option_d is part of the history
+            d_in_hist = ismember(option(4,:), ant_hist, 'rows');
+        end
         
         % all directions new or all directions old, choose random
         if ((a_in_hist && b_in_hist && c_in_hist && d_in_hist) || ...
