@@ -42,6 +42,7 @@ for i = 1:iterations
             %retrieve data of ant that found a route
             [~,ant_reached] = ismember(end_ant, ants_pos, 'rows');
             ant_reached_hist = squeeze(ants_hist(1:(s+1),ant_reached,:));
+            ant_reached_hist = trimHist(ant_reached_hist);
             
             %calculate new amounts of pheromones and corresponding chances
             Pheromones_matrix = calcPheromones(Pheromones_matrix, ...
