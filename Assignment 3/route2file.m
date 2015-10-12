@@ -1,4 +1,5 @@
 %Convert an ant history to correct file format
+%FILE FORMAT INCORRECT, please edit manually
 
 %Initialization
 hist = ant_reached_hist;
