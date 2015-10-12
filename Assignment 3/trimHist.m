@@ -12,7 +12,7 @@ for s = 1:length(ant_hist)
         ant_hist_trimmed = vertcat(ant_hist_trimmed,ant_hist(1,:));
         ant_hist = ant_hist(2:end,:);
     else
-        ant_hist = ant_hist(loc:end,:); %emulate a jump to loc
+        ant_hist = ant_hist((loc+1):end,:); %emulate a jump to loc
         continue;
     end
 end

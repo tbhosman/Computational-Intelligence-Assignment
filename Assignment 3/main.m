@@ -5,7 +5,7 @@ close all;
 %% Tweakables
 ants = 20; %number of simulated ants
 iterations = 100; %number of iterations
-max_steps = 10000; %maximum number of steps an ant can make before aborting
+max_steps = 3000; %maximum number of steps an ant can make before aborting
 pheromones = 100; %amount of pheromones dropped
 evaporation = 0.1; %evaporation constant
 
@@ -35,6 +35,10 @@ for i = 1:iterations
     for s = 1:max_steps
         ants_pos = calcNextLoc(Chances_matrix, ants_pos, ants_hist(1:(s-1),:,:));
         ants_hist(s+1,:,:) = ants_pos;
+        
+        if (s == max_steps)
+            continue;
+        end
         
         %check if end location is reached
         if (ismember(end_ant, ants_pos, 'rows'))
