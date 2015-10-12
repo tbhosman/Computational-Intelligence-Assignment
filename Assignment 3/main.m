@@ -3,11 +3,15 @@ clear all;
 close all;
 
 %% Tweakables
-ants = 20; %number of simulated ants
-iterations = 100; %number of iterations
+ants = 100; %number of simulated ants
+iterations = 1; %number of iterations
 max_steps = 3000; %maximum number of steps an ant can make before aborting
+%max_steps for medium maze: ~3000, max_steps for hard: ~20000
 pheromones = 100; %amount of pheromones dropped
 evaporation = 0.1; %evaporation constant
+conv = 5; %number of iterations to check convergence on
+conv_crit = 0; %number of steps one history element in length_hist can differ from another
+%conv_crit for easy: 0, conv_crit for medium: 10
 
 %% Load files
 maze = dlmread('medium maze.txt');
@@ -53,7 +57,13 @@ for i = 1:iterations
                 ant_reached_hist, pheromones, evaporation);
             Chances_matrix = calcChances(Pheromones_matrix);
     
-            s
+            length(ant_reached_hist) %output length to user
+            
+            length_hist(mod(i,conv)+1) = length(ant_reached_hist);
+            if (max(length_hist)-min(length_hist) <= conv_crit)
+               return; 
+            end
+            
             break; %go to next iteration
         end   
     end

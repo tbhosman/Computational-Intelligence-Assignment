@@ -20,7 +20,7 @@ for h = 1:(size(ant_reached_hist,1)-1)
     dir = coord2dir(loc_cur, loc_next);
             
     Pheromones_matrix(loc_cur(2)+1,loc_cur(1)+1,dir) = ...
-        Pheromones_matrix(y,x,dir) + delta_pheromones;    
+        Pheromones_matrix(loc_cur(2)+1,loc_cur(1)+1,dir) + delta_pheromones;    
 end
 end
 
