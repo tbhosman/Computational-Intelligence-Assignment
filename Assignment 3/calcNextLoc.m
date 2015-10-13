@@ -54,7 +54,7 @@ for a = 1:length(ants_pos)
                 
                 %if both old, choose random
                 ants_pos(a,:) = option(chooseRandom2...
-                    (chance(dir(1))),:);
+                    (chance(dir(1)),[1 2]),:);
                 
             else %if a old but b new, choose b
                 ants_pos(a,:) = option(2,:);
@@ -65,7 +65,7 @@ for a = 1:length(ants_pos)
         
         else %if both new, choose random
             ants_pos(a,:) = option(chooseRandom2...
-                (chance(dir(1))),:);
+                (chance(dir(1)),[1 2]),:);
         end
       
 %3 possible directions
@@ -110,19 +110,19 @@ for a = 1:length(ants_pos)
         %a is old, choose b or c
         elseif (a_in_hist)
                 ants_pos(a,:) = option(chooseRandom2...
-                    (chance(dir(2))/(chance(dir(2))+chance(dir(3)))),:);
+                    (chance(dir(2))/(chance(dir(2))+chance(dir(3))),[2 3]),:);
                 %chances are normalized to ensure total chance of 1
                 
         %b is old, choose a or c
         elseif (b_in_hist)
                 ants_pos(a,:) = option(chooseRandom2...
-                    (chance(dir(1))/(chance(dir(1))+chance(dir(3)))),:);
+                    (chance(dir(1))/(chance(dir(1))+chance(dir(3))),[1 3]),:);
                 %chances are normalized to ensure total chance of 1
                 
         %c is old, choose a or b
         elseif (c_in_hist)
                 ants_pos(a,:) = option(chooseRandom2...
-                    (chance(dir(1))/(chance(dir(1))+chance(dir(2)))),:);
+                    (chance(dir(1))/(chance(dir(1))+chance(dir(2))),[1 2]),:);
                 %chances are normalized to ensure total chance of 1
         end
                
@@ -176,37 +176,37 @@ for a = 1:length(ants_pos)
         % a and b old, choose c and d random
         elseif (a_in_hist && b_in_hist)
             ants_pos(a,:) = option(chooseRandom2...
-                (chance(dir(3))/(chance(dir(3))+chance(dir(4)))),:);
+                (chance(dir(3))/(chance(dir(3))+chance(dir(4))),[3 4]),:);
                 %chances are normalized to ensure total chance of 1
         
         % a and c old, choose b and d random
         elseif (a_in_hist && c_in_hist)
             ants_pos(a,:) = option(chooseRandom2...
-                (chance(dir(2))/(chance(dir(2))+chance(dir(4)))),:);
+                (chance(dir(2))/(chance(dir(2))+chance(dir(4))),[2 4]),:);
                 %chances are normalized to ensure total chance of 1
                 
         % a and d old, choose b and c random
         elseif (a_in_hist && d_in_hist)
             ants_pos(a,:) = option(chooseRandom2...
-                (chance(dir(2))/(chance(dir(2))+chance(dir(3)))),:);
+                (chance(dir(2))/(chance(dir(2))+chance(dir(3))),[2 3]),:);
                 %chances are normalized to ensure total chance of 1
                 
         % b and c old, choose a and d random
         elseif (b_in_hist && c_in_hist)
             ants_pos(a,:) = option(chooseRandom2...
-                (chance(dir(1))/(chance(dir(1))+chance(dir(4)))),:);
+                (chance(dir(1))/(chance(dir(1))+chance(dir(4))),[1 4]),:);
                 %chances are normalized to ensure total chance of 1
                 
         % b and d old, choose a and c random
         elseif (b_in_hist && d_in_hist)
             ants_pos(a,:) = option(chooseRandom2...
-                (chance(dir(1))/(chance(dir(1))+chance(dir(3)))),:);
+                (chance(dir(1))/(chance(dir(1))+chance(dir(3))),[1 3]),:);
                 %chances are normalized to ensure total chance of 1
                 
         % c and d old, choose a and b random
         elseif (c_in_hist && d_in_hist)
             ants_pos(a,:) = option(chooseRandom2...
-                (chance(dir(1))/(chance(dir(1))+chance(dir(2)))),:);
+                (chance(dir(1))/(chance(dir(1))+chance(dir(2))),[1 2]),:);
                 %chances are normalized to ensure total chance of 1
         
         % a old, choose b, c and d random
