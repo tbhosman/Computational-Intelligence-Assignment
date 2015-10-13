@@ -38,6 +38,7 @@ for a = 1:length(ants_pos)
         
         option(1,:) = ants_pos(a,:) + walkVector(dir(1));
         option(2,:) = ants_pos(a,:) + walkVector(dir(2));
+        
         if (isempty(ant_hist))
             a_in_hist = 0;
             b_in_hist = 0;
