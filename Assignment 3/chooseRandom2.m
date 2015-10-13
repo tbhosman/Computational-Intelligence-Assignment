@@ -1,4 +1,4 @@
-function option = chooseRandom2(chance1, chance2)
+function option = chooseRandom2(chance1)
 %Randomly chooses between two options based on their weights
 
 random_number = rand(1);

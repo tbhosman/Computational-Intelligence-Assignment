@@ -1,4 +1,4 @@
-function option = chooseRandom4(chance1, chance2, chance3, chance4)
+function option = chooseRandom4(chance1, chance2, chance3)
 %Randomly chooses between four options based on their weights
 
 

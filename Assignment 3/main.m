@@ -4,13 +4,13 @@ close all;
 
 %% Tweakables
 ants = 100; %number of simulated ants
-iterations = 1; %number of iterations
+iterations = 100; %number of iterations
 max_steps = 3000; %maximum number of steps an ant can make before aborting
 %max_steps for medium maze: ~3000, max_steps for hard: ~20000
 pheromones = 100; %amount of pheromones dropped
 evaporation = 0.1; %evaporation constant
 conv = 5; %number of iterations to check convergence on
-conv_crit = 0; %number of steps one history element in length_hist can differ from another
+conv_crit = 20; %number of steps one history element in length_hist can differ from another
 %conv_crit for easy: 0, conv_crit for medium: 10
 
 %% Load files
@@ -40,9 +40,9 @@ for i = 1:iterations
         ants_pos = calcNextLoc(Chances_matrix, ants_pos, ants_hist(1:(s-1),:,:));
         ants_hist(s+1,:,:) = ants_pos;
         
-        if (s == max_steps)
-            continue;
-        end
+        %if (s == max_steps)
+        %    continue;
+        %end
         
         %check if end location is reached
         if (ismember(end_ant, ants_pos, 'rows'))
