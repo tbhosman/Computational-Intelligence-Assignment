@@ -7,7 +7,7 @@ for s = 1:length(ant_hist)
     if (isempty(ant_hist))
         break;
     end
-    [mem loc] = ismember(ant_hist(1,:),ant_hist(2:end,:),'rows');
+    [mem, loc] = ismember(ant_hist(1,:),ant_hist(2:end,:),'rows');
     if (mem == 0) %no duplicate found
         ant_hist_trimmed = vertcat(ant_hist_trimmed,ant_hist(1,:));
         ant_hist = ant_hist(2:end,:);

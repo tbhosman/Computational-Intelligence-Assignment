@@ -21,6 +21,13 @@ for i = 1:iterations
            pheromones_matrix = calcPheromones(pheromones_matrix, ant_history, constants);
            chances_matrix = calcChances(pheromones_matrix);
            
+           %keep track of global best
+           if i==1 %first iteration
+               global_best = ant_reached_hist;
+           elseif (length(global_best)>length_reached)
+               global_best = ant_reached_hist;
+           end
+           
            %check convergence criterion
            if (average_route_length_change < convergence_criterion)
                return
