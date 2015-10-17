@@ -3,9 +3,9 @@ clear all;
 close all;
 
 %% Tweakables
-ants = 100; %number of simulated ants
+ants = 20; %number of simulated ants
 iterations = 200; %number of iterations
-max_steps = 100000; %maximum number of steps an ant can make before aborting
+max_steps = 50000; %maximum number of steps an ant can make before aborting
 %max_steps for medium maze: ~3000, max_steps for hard: ~20000
 pheromones = 800; %amount of pheromones dropped
 evaporation = 0.1; %evaporation constant
@@ -14,10 +14,10 @@ conv_crit = 0; %number of steps one history element in length_hist can differ fr
 %conv_crit for easy: 0, conv_crit for medium: 0
 
 %% Load files
-maze = dlmread('INSANE maze.txt');
+maze = dlmread('hard maze.txt');
 %coordinates are in [x,y] position
-start_ant = dlmread('INSANE coordinates.txt',',', [0 0 0 1]); 
-end_ant = dlmread('INSANE coordinates.txt',',', [1 0 1 1]);
+start_ant = dlmread('hard coordinates.txt',',', [0 0 0 1]); 
+end_ant = dlmread('hard coordinates.txt',',', [1 0 1 1]);
 
 sizeX = maze(1,1); %get number of columns
 sizeY = maze(1,2); %get number of rows
