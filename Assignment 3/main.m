@@ -14,10 +14,10 @@ conv_crit = 0; %number of steps one history element in length_hist can differ fr
 %conv_crit for easy: 0, conv_crit for medium: 0
 
 %% Load files
-maze = dlmread('hard maze.txt');
+maze = dlmread('easy maze.txt');
 %coordinates are in [x,y] position
-start_ant = dlmread('hard coordinates.txt',',', [0 0 0 1]); 
-end_ant = dlmread('hard coordinates.txt',',', [1 0 1 1]);
+start_ant = dlmread('easy coordinates.txt',',', [0 0 0 1]); 
+end_ant = dlmread('easy coordinates.txt',',', [1 0 1 1]);
 
 sizeX = maze(1,1); %get number of columns
 sizeY = maze(1,2); %get number of rows
