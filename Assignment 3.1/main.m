@@ -3,21 +3,21 @@ clear all;
 close all;
 
 %% Tweakables
-ants = 100; %number of simulated ants
+ants = 20; %number of simulated ants
 iterations = 200; %number of iterations
-max_steps = 100000; %maximum number of steps an ant can make before aborting
+max_steps = 50000; %maximum number of steps an ant can make before aborting
 %max_steps for medium maze: ~3000, max_steps for hard: ~20000
-pheromones = 1000; %amount of pheromones dropped
+pheromones = 800; %amount of pheromones dropped
 evaporation = 0.1; %evaporation constant
 conv = 20; %number of iterations to check convergence on
 conv_crit = 0; %number of steps one history element in length_hist can differ from another
 %conv_crit for easy: 0, conv_crit for medium: 0
 
 %% Load files
-maze = dlmread('INSANE maze.txt');
+maze = dlmread('easy maze.txt');
 %coordinates are in [x,y] position
-start_ant = dlmread('INSANE coordinates.txt',',', [0 0 0 1]); 
-end_ant = dlmread('INSANE coordinates.txt',',', [1 0 1 1]);
+start_ant = dlmread('easy coordinates.txt',',', [0 0 0 1]); 
+end_ant = dlmread('easy coordinates.txt',',', [1 0 1 1]);
 
 sizeX = maze(1,1); %get number of columns
 sizeY = maze(1,2); %get number of rows
@@ -51,6 +51,7 @@ for i = 1:iterations
             [~,ant_reached] = ismember(end_ant, ants_pos, 'rows');
             ant_reached_hist = squeeze(ants_hist(1:(s+1),ant_reached,:));
             ant_reached_hist = trimHist(ant_reached_hist);
+            ant_reached_hist = trimBumps(ant_reached_hist);
             
             %calculate new amounts of pheromones and corresponding chances
             Pheromones_matrix = calcPheromones(Pheromones_matrix, ...
