@@ -39,7 +39,7 @@ for i = 1:iterations
         ants_hist(s+1,:,:) = ants_pos;
         
         if (s == max_steps)
-            global_best = -1;
+            global_best = [];
             return;
         end
         
