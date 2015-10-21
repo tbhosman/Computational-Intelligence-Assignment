@@ -5,27 +5,38 @@ function [ child1, child2 ] = DoCrossover( parent1, parent2)
     %length = randi(6);
     length = 3;
     %start = randi(8 - length);
-    start = 5;
+    start = 4;
     part1 = parent1(start:start+length);
     part2 = parent2(start:start+length);
     child1 = parent1;
     child2 = parent2;
-    for i = start:start+length
+    for i = start:start+length-1 %for loops in matlab doen t/m (vandaar de -1)
         child1(i) = parent2(i);
         child2(i) = parent1(i);
     end
+    ahist = zeros(1,length);
     for k = 1:length
-        k
-      index1 = find(part2(k) == parent1)  %vind waar het getal in parent1 staat dat in part2 staat
-      index2 = find(part1(k) == parent2) %vind waar het getal in parent2 staat dat in part1 staat
-      %if((index1 >= start) && index1 <= start+length) %hetzelfde getal zit in beide crossover gebieden
-        
-          %do nothing
-      %else
+       
+      if(ismember(part1(k),part2) || ismember(part2(k),part1) && ismember(k,ahist)) %Dont want to destroy the childeren.
+          
+      elseif(ismember(part1(k),part2) || ismember(part2(k),part1)) %hetzelfde getal zit in beide crossover gebieden
+          
+          a = find(part2(k) == part1);
+          b = k;
+          index1 = find(part2(a) == parent1);
+          index2 = find(part1(b) == parent2);
+          temp = child1(index1);
+          child1(index1) = child2(index2);
+          child2(index2) = temp;
+          ahist(k) = a;
+          
+      else
+          index1 = find(part2(k) == parent1);  %vind waar het getal in parent1 staat dat in part2 staat
+          index2 = find(part1(k) == parent2); %vind waar het getal in parent2 staat dat in part1 staat
           temp = child1(index1); %swap
           child1(index1) = child2(index2);
           child2(index2) = temp;
-      %end
+      end
       
       
 %         a = part1(k); %op plek b moet part2(k) komen
