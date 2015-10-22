@@ -2,12 +2,10 @@ function [ child1, child2 ] = DoCrossover( parent1, parent2)
 %UNTITLED Summary of this function goes here
 %   Detailed explanation goes here
     
-    %length = randi(6);
-    length = 3;
-    %start = randi(8 - length);
-    start = 4;
-    part1 = parent1(start:start+length);
-    part2 = parent2(start:start+length);
+    length = randi(6);
+    start = randi(size(parent1,2) - length);
+    part1 = parent1(start:start+length-1);
+    part2 = parent2(start:start+length-1);
     child1 = parent1;
     child2 = parent2;
     for i = start:start+length-1 %for loops in matlab doen t/m (vandaar de -1)
