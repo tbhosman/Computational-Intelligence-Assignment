@@ -3,9 +3,9 @@
 %% tweakables
 chromosomes = 10; %number of chromosomes
 locs = 18; %number of locations to visit
-iterations = 100000;
+iterations = 10000000;
 mut_chance = 0.01; %chance to mutate chromosome
-crossover_chance = 0.3; %chance to crossover
+crossover_chance = 0.7; %chance to crossover
 
 %% initialize population
 start_ant = dlmread('hard coordinates.txt',',', [0 0 0 1]); 
@@ -19,7 +19,8 @@ end
     fitness = calcFitness(dist,population);
     chances = calcFitChances(fitness);
     [~, max_index] = max(fitness);
-    global_best = population(max_index,:);
+    %global_best = population(max_index,:);
+    %global_best_dist = 1/fitness(max_index);
 
 %% main loop
 for i=1:iterations
@@ -30,9 +31,11 @@ for i=1:iterations
     fitness = calcFitness(dist,population);
     chances = calcFitChances(fitness);
     
-    [~, max_index] = max(fitness);
-    global_best = population(max_index,:);
-    global_best_dist = 1/fitness(max_index);
+    [max_fit, max_index] = max(fitness);
+    if (1/max_fit < global_best_dist)
+        global_best = population(max_index,:);
+        global_best_dist = 1/fitness(max_index);
+    end
 end
 
 %% convert to file

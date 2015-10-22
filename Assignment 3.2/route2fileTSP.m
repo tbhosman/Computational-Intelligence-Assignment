@@ -4,8 +4,6 @@
 %Initialization
 sc = ';';
 
-
-
 dlmwrite('route.txt',global_best_dist,'delimiter',';');
 dlmwrite('route.txt',sc, '-append');
 dlmwrite('route.txt',start_ant,'-append');
