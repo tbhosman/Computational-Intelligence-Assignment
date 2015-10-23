@@ -3,7 +3,7 @@ close all;
 
 start_ant = dlmread('hard coordinates.txt',',', [0 0 0 1]); 
 end_ant = dlmread('hard coordinates.txt',',', [1 0 1 1]);
-tsp_products = [start_ant; 0 19; 11 13; 75 72; 79 0; 11 30; 34 78; 8 39; 15 59; 62 21; 42 36; 63 65; 37 50; 4 66; 31 25; 47 47; 60 0; 78 60; 0 50; end_ant];
+tsp_products = [0 19; 11 13; 75 72; 79 0; 11 30; 34 78; 8 39; 15 59; 62 21; 42 36; 63 65; 37 50; 4 66; 31 25; 47 47; 60 0; 78 60; 0 50; start_ant; end_ant];
 maze_dim = 80;
 %M = zeros(length(tsp_products),length(tsp_products));
 

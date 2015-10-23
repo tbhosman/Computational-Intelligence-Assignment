@@ -7,7 +7,7 @@ function global_best = ACO_function(start_ant, end_ant)
 %% Tweakables
 ants = 10; %number of simulated ants
 iterations = 200; %number of iterations
-max_steps = 5000; %maximum number of steps an ant can make before aborting
+max_steps = 2000; %maximum number of steps an ant can make before aborting
 %max_steps for medium maze: ~3000, max_steps for hard: ~20000
 pheromones = abs(start_ant(1)-end_ant(1))*abs(start_ant(2)-end_ant(2))/5; %amount of pheromones dropped
 evaporation = 0.1; %evaporation constant
