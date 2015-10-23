@@ -14,7 +14,7 @@ for a=1:(length(tsp_products)-1)
         
         global_best = ACO_function(tsp_products(a,:),tsp_products(b,:));
         routes(a,b) = {global_best};
-        routes(b,a) = {global_best};
+        routes(b,a) = {flipud(global_best)};
         if isempty(global_best)
             dist(a,b) = 99999;
             dist(b,a) = 99999;
